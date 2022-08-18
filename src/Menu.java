@@ -30,7 +30,10 @@ public class Menu {
         contact.create();
       break;
       case 2:
-        archivo.read();
+        archivo.read(true);
+      break;
+      case 4:
+        contact.delete();
       break;
       default:
         helper.clearScreen();
