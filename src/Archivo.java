@@ -55,7 +55,7 @@ public class Archivo {
     }
   }
 
-  public void delete(String phoneToEdit) {
+  public void update(String phoneToEdit, String newPhone, String newName, String newEmail) {
     try {
       File file = new File(route);
 
@@ -69,6 +69,7 @@ public class Archivo {
       while ((line = obj.readLine()) != null) {
         if (line.contains(phoneToEdit + "#")) {
           contactWasFound = true;
+          editFileInformation += newPhone + "#" + newName + "#" + newEmail + "\n";
         } else {
           editFileInformation += line + "\n";
         }
@@ -78,12 +79,72 @@ public class Archivo {
 
       if (contactWasFound) {
         create(editFileInformation, false);
-        System.out.println("Se ha eliminado el contacto: " + phoneToEdit);
+        System.out.println("Se ha editado el contacto: " + phoneToEdit);
       } else {
         System.out.println("No se ha encontrado ningun contacto con el numero de telefono: " + phoneToEdit);
       }
     } catch (Exception e) {
       System.out.println("Ocurrio un problema: " + e);
+    }
+  }
+
+  public void delete(String phoneToDelete) {
+    try {
+      File file = new File(route);
+
+      BufferedReader obj = new BufferedReader(new FileReader(file));
+
+      String line;
+      Boolean contactWasFound = false;
+      String editFileInformation = "";
+      helper.clearScreen();
+
+      while ((line = obj.readLine()) != null) {
+        if (line.contains(phoneToDelete + "#")) {
+          contactWasFound = true;
+        } else {
+          editFileInformation += line + "\n";
+        }
+      }
+
+      obj.close();
+
+      if (contactWasFound) {
+        create(editFileInformation, false);
+        System.out.println("Se ha eliminado el contacto: " + phoneToDelete);
+      } else {
+        System.out.println("No se ha encontrado ningun contacto con el numero de telefono: " + phoneToDelete);
+      }
+    } catch (Exception e) {
+      System.out.println("Ocurrio un problema: " + e);
+    }
+  }
+
+  public boolean phoneExists(String phoneToSearch) {
+    try {
+      File file = new File(route);
+
+      BufferedReader obj = new BufferedReader(new FileReader(file));
+
+      String line;
+      Boolean contactWasFound = false;
+
+      while ((line = obj.readLine()) != null) {
+        if (line.contains(phoneToSearch + "#")) {
+          contactWasFound = true;
+        }
+      }
+
+      obj.close();
+
+      if (contactWasFound) {
+        return true;
+      }
+
+      return false;
+
+    } catch (Exception e) {
+      return false;
     }
   }
 }

@@ -32,6 +32,9 @@ public class Menu {
       case 2:
         archivo.read(true);
       break;
+      case 3:
+        contact.update();
+      break;
       case 4:
         contact.delete();
       break;
