@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Menu {
   Contact contact = new Contact();
   Helpers helper = new Helpers();
+  Archivo archivo = new Archivo();
 
   public void show() {
     helper.clearScreen();
@@ -27,6 +28,9 @@ public class Menu {
     switch(opt) {
       case 1:
         contact.create();
+      break;
+      case 2:
+        archivo.read();
       break;
       default:
         helper.clearScreen();
