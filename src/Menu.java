@@ -4,6 +4,7 @@ public class Menu {
   Contact contact = new Contact();
   Helpers helper = new Helpers();
   Archivo archivo = new Archivo();
+  Pdf pdf = new Pdf();
 
   public void show() {
     helper.clearScreen();
@@ -37,6 +38,10 @@ public class Menu {
       break;
       case 4:
         contact.delete();
+      break;
+      case 5:
+        pdf.generate();
+        helper.systemPause();
       break;
       default:
         helper.clearScreen();
